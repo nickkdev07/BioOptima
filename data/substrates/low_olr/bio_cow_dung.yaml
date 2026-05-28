@@ -1,0 +1,25 @@
+# low OLR
+# ADM1da substrate: Indian cow dung — diluted slurry (calibrated)
+#
+# TS 100 kg/m³ (~10% TS slurry). Calibrated against 21 Indian AD literature
+# points so that ADM1 specific yields match published observations within
+# bias-correction range. NH4, FFS, KS43 are per-m³-slurry quantities.
+
+name: Indian cow dung (slurry)
+TS:    55
+NH4:    0.4125
+BGP:  220.0
+BMP:  200.0
+aXI:     0.45
+fOTSrf:  0.75
+fsOTS:   0.85
+ffOTS:   0.15
+aSi:     0.04
+fRF:   0.28
+fRP:   0.12
+fRFe:  0.04
+fRA:   0.08
+Temp:  25.0
+pH:    7.0
+KS43:  24.75
+FFS:   0.825

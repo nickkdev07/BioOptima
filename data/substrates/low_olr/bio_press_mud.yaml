@@ -1,0 +1,24 @@
+# low OLR
+# ADM1da substrate: Indian press mud (sugar industry) — slurry (calibrated)
+#
+# TS 170 kg/m³ (~17% TS slurry, diluted with water/digestate). Calibrated
+# against Indian AD literature. NH4, FFS, KS43 per-m³-slurry.
+
+name: Indian press mud (slurry)
+TS:    93.5
+NH4:    0.1045
+BGP:  380.0
+BMP:  260.0
+aXI:     0.38
+fOTSrf:  0.72
+fsOTS:   0.80
+ffOTS:   0.20
+aSi:     0.04
+fRF:   0.22
+fRP:   0.14
+fRFe:  0.08
+fRA:   0.12
+Temp:  25.0
+pH:    6.8
+KS43:  7.15
+FFS:   0.154

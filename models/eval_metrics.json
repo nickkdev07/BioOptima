@@ -1,0 +1,153 @@
+{
+  "yield_r2": 0.998136751959743,
+  "yield_rmse": 1.031061149992182,
+  "yield_cv_r2_mean": 0.9980702527307294,
+  "health_f1_macro": 0.9440875565072566,
+  "health_accuracy": 0.9985815602836879,
+  "health_cv_f1_macro_mean": 0.8317639599469118,
+  "health_classification_report": {
+    "0": {
+      "precision": 1.0,
+      "recall": 0.9985734664764622,
+      "f1-score": 0.9992862241256245,
+      "support": 701.0
+    },
+    "1": {
+      "precision": 0.8,
+      "recall": 1.0,
+      "f1-score": 0.8888888888888888,
+      "support": 4.0
+    },
+    "accuracy": 0.9985815602836879,
+    "macro avg": {
+      "precision": 0.9,
+      "recall": 0.9992867332382311,
+      "f1-score": 0.9440875565072566,
+      "support": 705.0
+    },
+    "weighted avg": {
+      "precision": 0.9988652482269504,
+      "recall": 0.9985815602836879,
+      "f1-score": 0.9986598562661253,
+      "support": 705.0
+    }
+  },
+  "n_total": 4700,
+  "n_train": 3995,
+  "n_test": 705,
+  "n_features": 19,
+  "feature_names": [
+    "cow_frac",
+    "rice_frac",
+    "wheat_frac",
+    "food_frac",
+    "press_frac",
+    "poultry_frac",
+    "temperature_C",
+    "HRT_days",
+    "OLR",
+    "CN_ratio",
+    "VS_total",
+    "temp_HRT",
+    "lipid_frac_mix",
+    "protein_frac_mix",
+    "COD_proxy",
+    "OLR_x_food_frac",
+    "protein_to_CN",
+    "OLR_per_HRT",
+    "lipid_x_temp"
+  ],
+  "best_regressor": "xgboost",
+  "best_classifier": "xgboost",
+  "regressor_comparison": {
+    "xgboost": {
+      "cv_r2_mean": 0.9980702527307294,
+      "cv_r2_std": 0.00018892162517117987,
+      "cv_rmse_mean": 1.1627847675643765
+    },
+    "lightgbm": {
+      "cv_r2_mean": 0.9977368505915768,
+      "cv_r2_std": 0.00030661707348018295,
+      "cv_rmse_mean": 1.2570799008281202
+    },
+    "random_forest": {
+      "cv_r2_mean": 0.9938951093993363,
+      "cv_r2_std": 0.0006249200043101711,
+      "cv_rmse_mean": 2.069568505802225
+    },
+    "stacking": {
+      "cv_r2_mean": 0.9099985152348922,
+      "cv_r2_std": 0.009480431883858909,
+      "cv_rmse_mean": 7.945456617343817
+    }
+  },
+  "classifier_comparison": {
+    "xgboost": {
+      "cv_f1_macro_mean": 0.8317639599469118,
+      "cv_f1_macro_std": 0.032924194324217705,
+      "cv_accuracy_mean": 0.9961702127659574
+    },
+    "lightgbm": {
+      "cv_f1_macro_mean": 0.8189975241642424,
+      "cv_f1_macro_std": 0.08277330638723014,
+      "cv_accuracy_mean": 0.9963829787234042
+    },
+    "random_forest": {
+      "cv_f1_macro_mean": 0.7671444277927744,
+      "cv_f1_macro_std": 0.06341545470668226,
+      "cv_accuracy_mean": 0.9946808510638299
+    },
+    "stacking": {
+      "cv_f1_macro_mean": 0.7648573417181052,
+      "cv_f1_macro_std": 0.14735977750567855,
+      "cv_accuracy_mean": 0.9959574468085106
+    }
+  },
+  "learning_curve": [
+    {
+      "fraction": 0.2,
+      "n_train": 940,
+      "r2": 0.9937777079568572
+    },
+    {
+      "fraction": 0.4,
+      "n_train": 1880,
+      "r2": 0.9962026954696894
+    },
+    {
+      "fraction": 0.6,
+      "n_train": 2820,
+      "r2": 0.9974715398928797
+    },
+    {
+      "fraction": 0.8,
+      "n_train": 3760,
+      "r2": 0.9982726526375324
+    },
+    {
+      "fraction": 1.0,
+      "n_train": 4700,
+      "r2": 0.9999200625152412
+    }
+  ],
+  "training_ranges": {
+    "temperature_C": [
+      25.01136258517889,
+      44.99530673828688
+    ],
+    "HRT_days": [
+      10.000219386201556,
+      49.988594042515714
+    ],
+    "OLR": [
+      1.7447862257079942,
+      14.8994967816578
+    ]
+  },
+  "stability_distribution": {
+    "0": 4675,
+    "1": 25
+  },
+  "tuned": false,
+  "sampling_strategy": "HRT-first (see sweep.py)"
+}

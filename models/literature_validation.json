@@ -1,0 +1,353 @@
+{
+  "n_points_total": 21,
+  "n_points_in_range": 19,
+  "n_points_excluded": 2,
+  "training_ranges": {
+    "temperature_C": [
+      25.01136258517889,
+      44.99530673828688
+    ],
+    "HRT_days": [
+      10.000219386201556,
+      49.988594042515714
+    ],
+    "OLR": [
+      1.7447862257079942,
+      14.8994967816578
+    ]
+  },
+  "overall_in_range": {
+    "label": "in_range",
+    "n": 19,
+    "mape_pct": 10.7,
+    "r2": 0.7237,
+    "bias_correction": {
+      "a": 1.1493,
+      "b": -0.0344
+    },
+    "mape_pct_corrected": 8.5
+  },
+  "mono_digestion": {
+    "label": "mono_digestion",
+    "n": 4,
+    "mape_pct": 10.91,
+    "r2": 0.9023,
+    "bias_correction": {
+      "a": 1.1221,
+      "b": -0.1012
+    },
+    "mape_pct_corrected": 9.13
+  },
+  "co_digestion": {
+    "label": "co_digestion",
+    "n": 15,
+    "mape_pct": 10.64,
+    "r2": 0.6056,
+    "bias_correction": {
+      "a": 1.3727,
+      "b": -0.1358
+    },
+    "mape_pct_corrected": 5.88
+  },
+  "by_category": {
+    "mono-cow": {
+      "label": "mono-cow",
+      "n": 1,
+      "mape_pct": 9.82,
+      "r2": -1543772.7168,
+      "bias_correction": {
+        "a": 1.0,
+        "b": 0.0
+      },
+      "mape_pct_corrected": 9.82
+    },
+    "co-food": {
+      "label": "co-food",
+      "n": 1,
+      "mape_pct": 21.13,
+      "r2": -40298006.8301,
+      "bias_correction": {
+        "a": 1.0,
+        "b": 0.0
+      },
+      "mape_pct_corrected": 21.13
+    },
+    "co-cow": {
+      "label": "co-cow",
+      "n": 14,
+      "mape_pct": 9.89,
+      "r2": 0.5843,
+      "bias_correction": {
+        "a": 1.2647,
+        "b": -0.0816
+      },
+      "mape_pct_corrected": 5.73
+    },
+    "mono-press": {
+      "label": "mono-press",
+      "n": 1,
+      "mape_pct": 24.14,
+      "r2": -15762572.3782,
+      "bias_correction": {
+        "a": 1.0,
+        "b": 0.0
+      },
+      "mape_pct_corrected": 24.14
+    },
+    "mono-poultry": {
+      "label": "mono-poultry",
+      "n": 1,
+      "mape_pct": 5.16,
+      "r2": -835731.289,
+      "bias_correction": {
+        "a": 1.0,
+        "b": 0.0
+      },
+      "mape_pct_corrected": 5.16
+    },
+    "mono-food": {
+      "label": "mono-food",
+      "n": 1,
+      "mape_pct": 4.51,
+      "r2": -2030544.02,
+      "bias_correction": {
+        "a": 1.0,
+        "b": 0.0
+      },
+      "mape_pct_corrected": 4.51
+    }
+  },
+  "excluded_points": [
+    {
+      "substrate": "Cow dung mono-digestion (thermophilic)",
+      "temperature_C": 53.0,
+      "HRT_days": 25.0,
+      "OLR": 2.0,
+      "reason": "outside training range: T=53C"
+    },
+    {
+      "substrate": "Cattle dung only (35C, continuous)",
+      "temperature_C": 35.0,
+      "HRT_days": 35.0,
+      "OLR": 1.5,
+      "reason": "outside training range: OLR=1.5"
+    }
+  ],
+  "per_point": [
+    {
+      "source": "MDPI Bioengineering 2022, Table 2",
+      "substrate": "Cow dung mono-digestion (mesophilic)",
+      "observed": 0.4,
+      "predicted": 0.4393,
+      "predicted_corrected": 0.4519,
+      "pct_error": 9.8,
+      "in_training_range": true,
+      "category": "mono-cow"
+    },
+    {
+      "source": "MDPI Bioengineering 2022, Table 2",
+      "substrate": "Cow dung mono-digestion (thermophilic)",
+      "observed": 0.36,
+      "predicted": 0.4618,
+      "predicted_corrected": 0.4794,
+      "pct_error": 28.3,
+      "in_training_range": false,
+      "category": "mono-cow"
+    },
+    {
+      "source": "Frontiers Energy Res. 2025, Table 3",
+      "substrate": "Food waste + cow dung (70:30, 37C)",
+      "observed": 0.95,
+      "predicted": 0.7493,
+      "predicted_corrected": 0.8307,
+      "pct_error": 21.1,
+      "in_training_range": true,
+      "category": "co-food"
+    },
+    {
+      "source": "Frontiers Energy Res. 2025, Table 3",
+      "substrate": "Food waste + cow dung (50:50, 37C)",
+      "observed": 0.76,
+      "predicted": 0.6524,
+      "predicted_corrected": 0.7124,
+      "pct_error": 14.2,
+      "in_training_range": true,
+      "category": "co-cow"
+    },
+    {
+      "source": "Frontiers Energy Res. 2025, Table 3",
+      "substrate": "Food waste + cow dung (30:70, 37C)",
+      "observed": 0.59,
+      "predicted": 0.5432,
+      "predicted_corrected": 0.5789,
+      "pct_error": 7.9,
+      "in_training_range": true,
+      "category": "co-cow"
+    },
+    {
+      "source": "IJERT 2020, Table 1",
+      "substrate": "Kitchen waste + cattle dung (1:1, 35C)",
+      "observed": 0.58,
+      "predicted": 0.5759,
+      "predicted_corrected": 0.6188,
+      "pct_error": 0.7,
+      "in_training_range": true,
+      "category": "co-cow"
+    },
+    {
+      "source": "IJERT 2020, Table 1",
+      "substrate": "Cattle dung only (35C, continuous)",
+      "observed": 0.3,
+      "predicted": 0.3546,
+      "predicted_corrected": 0.3483,
+      "pct_error": 18.2,
+      "in_training_range": false,
+      "category": "mono-cow"
+    },
+    {
+      "source": "Springer AAER 2023, Table 2",
+      "substrate": "Cow dung + market waste (50:50, Delhi)",
+      "observed": 0.82,
+      "predicted": 0.7127,
+      "predicted_corrected": 0.786,
+      "pct_error": 13.1,
+      "in_training_range": true,
+      "category": "co-cow"
+    },
+    {
+      "source": "Indian J. Anim. Sci. 2019, Fig 3",
+      "substrate": "Rice straw + cow dung (40:60, 37C)",
+      "observed": 0.46,
+      "predicted": 0.4492,
+      "predicted_corrected": 0.464,
+      "pct_error": 2.3,
+      "in_training_range": true,
+      "category": "co-cow"
+    },
+    {
+      "source": "Indian J. Anim. Sci. 2019, Fig 3",
+      "substrate": "Rice straw + cow dung (20:80, 37C)",
+      "observed": 0.43,
+      "predicted": 0.4205,
+      "predicted_corrected": 0.4289,
+      "pct_error": 2.2,
+      "in_training_range": true,
+      "category": "co-cow"
+    },
+    {
+      "source": "Waste Mgmt 2021, Table 4",
+      "substrate": "Wheat straw + dung (30:70, 35C)",
+      "observed": 0.52,
+      "predicted": 0.4712,
+      "predicted_corrected": 0.4909,
+      "pct_error": 9.4,
+      "in_training_range": true,
+      "category": "co-cow"
+    },
+    {
+      "source": "Waste Mgmt 2021, Table 4",
+      "substrate": "Wheat straw + dung (50:50, 35C)",
+      "observed": 0.48,
+      "predicted": 0.496,
+      "predicted_corrected": 0.5212,
+      "pct_error": 3.3,
+      "in_training_range": true,
+      "category": "co-cow"
+    },
+    {
+      "source": "Sugar Tech 2020, Table 3",
+      "substrate": "Press mud mono-digestion (37C)",
+      "observed": 0.52,
+      "predicted": 0.6455,
+      "predicted_corrected": 0.7039,
+      "pct_error": 24.1,
+      "in_training_range": true,
+      "category": "mono-press"
+    },
+    {
+      "source": "Sugar Tech 2020, Table 3",
+      "substrate": "Press mud + cow dung (50:50, 37C)",
+      "observed": 0.6,
+      "predicted": 0.5112,
+      "predicted_corrected": 0.5398,
+      "pct_error": 14.8,
+      "in_training_range": true,
+      "category": "co-cow"
+    },
+    {
+      "source": "Poultry Sci. 2018, Table 2",
+      "substrate": "Poultry litter mono-digestion (35C)",
+      "observed": 0.56,
+      "predicted": 0.5311,
+      "predicted_corrected": 0.5641,
+      "pct_error": 5.2,
+      "in_training_range": true,
+      "category": "mono-poultry"
+    },
+    {
+      "source": "Poultry Sci. 2018, Table 2",
+      "substrate": "Poultry litter + dung (30:70, 35C)",
+      "observed": 0.48,
+      "predicted": 0.4232,
+      "predicted_corrected": 0.4322,
+      "pct_error": 11.8,
+      "in_training_range": true,
+      "category": "co-cow"
+    },
+    {
+      "source": "Bioresource Tech. 2019, Fig 5",
+      "substrate": "Food waste + rice straw + dung (2:1:7)",
+      "observed": 0.68,
+      "predicted": 0.5428,
+      "predicted_corrected": 0.5784,
+      "pct_error": 20.2,
+      "in_training_range": true,
+      "category": "co-cow"
+    },
+    {
+      "source": "Bioresource Tech. 2019, Fig 5",
+      "substrate": "Food waste + rice straw + dung (3:2:5)",
+      "observed": 0.74,
+      "predicted": 0.6163,
+      "predicted_corrected": 0.6682,
+      "pct_error": 16.7,
+      "in_training_range": true,
+      "category": "co-cow"
+    },
+    {
+      "source": "Environ. Sci. Pollut. Res. 2022",
+      "substrate": "Dung + press mud + straw (6:2:2, 37C)",
+      "observed": 0.57,
+      "predicted": 0.4907,
+      "predicted_corrected": 0.5147,
+      "pct_error": 13.9,
+      "in_training_range": true,
+      "category": "co-cow"
+    },
+    {
+      "source": "Renew. Energy 2021, Table 5",
+      "substrate": "Food waste only (mesophilic, high OLR)",
+      "observed": 1.0,
+      "predicted": 0.9549,
+      "predicted_corrected": 1.0821,
+      "pct_error": 4.5,
+      "in_training_range": true,
+      "category": "mono-food"
+    },
+    {
+      "source": "Renew. Energy 2021, Table 5",
+      "substrate": "Food waste + dung (40:60, moderate OLR)",
+      "observed": 0.72,
+      "predicted": 0.6632,
+      "predicted_corrected": 0.7255,
+      "pct_error": 7.9,
+      "in_training_range": true,
+      "category": "co-cow"
+    }
+  ],
+  "unit": "m3_CH4_per_m3_reactor_per_day",
+  "V_liq_model": 100.0,
+  "mape_pct": 10.7,
+  "r2": 0.7237,
+  "n_points": 19
+}

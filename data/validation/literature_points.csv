@@ -1,0 +1,22 @@
+source,substrate_desc,cow_frac,rice_frac,wheat_frac,food_frac,press_frac,poultry_frac,temperature_C,HRT_days,OLR,observed_specific_yield,observed_pH
+"MDPI Bioengineering 2022, Table 2",Cow dung mono-digestion (mesophilic),1.0,0.0,0.0,0.0,0.0,0.0,35.0,25.0,2.0,0.40,7.1
+"MDPI Bioengineering 2022, Table 2",Cow dung mono-digestion (thermophilic),1.0,0.0,0.0,0.0,0.0,0.0,53.0,25.0,2.0,0.36,7.0
+"Frontiers Energy Res. 2025, Table 3","Food waste + cow dung (70:30, 37C)",0.3,0.0,0.0,0.7,0.0,0.0,37.0,30.0,2.5,0.95,7.0
+"Frontiers Energy Res. 2025, Table 3","Food waste + cow dung (50:50, 37C)",0.5,0.0,0.0,0.5,0.0,0.0,37.0,30.0,2.5,0.76,7.1
+"Frontiers Energy Res. 2025, Table 3","Food waste + cow dung (30:70, 37C)",0.7,0.0,0.0,0.3,0.0,0.0,37.0,30.0,2.5,0.59,7.2
+"IJERT 2020, Table 1","Kitchen waste + cattle dung (1:1, 35C)",0.5,0.0,0.0,0.5,0.0,0.0,35.0,35.0,2.0,0.58,7.0
+"IJERT 2020, Table 1","Cattle dung only (35C, continuous)",1.0,0.0,0.0,0.0,0.0,0.0,35.0,35.0,1.5,0.30,7.2
+"Springer AAER 2023, Table 2","Cow dung + market waste (50:50, Delhi)",0.5,0.0,0.0,0.5,0.0,0.0,35.0,20.0,3.0,0.82,6.9
+"Indian J. Anim. Sci. 2019, Fig 3","Rice straw + cow dung (40:60, 37C)",0.6,0.4,0.0,0.0,0.0,0.0,37.0,30.0,2.0,0.46,7.1
+"Indian J. Anim. Sci. 2019, Fig 3","Rice straw + cow dung (20:80, 37C)",0.8,0.2,0.0,0.0,0.0,0.0,37.0,30.0,2.0,0.43,7.2
+"Waste Mgmt 2021, Table 4","Wheat straw + dung (30:70, 35C)",0.7,0.0,0.3,0.0,0.0,0.0,35.0,25.0,2.5,0.52,7.1
+"Waste Mgmt 2021, Table 4","Wheat straw + dung (50:50, 35C)",0.5,0.0,0.5,0.0,0.0,0.0,35.0,25.0,2.5,0.48,7.0
+"Sugar Tech 2020, Table 3","Press mud mono-digestion (37C)",0.0,0.0,0.0,0.0,1.0,0.0,37.0,25.0,2.0,0.52,7.0
+"Sugar Tech 2020, Table 3","Press mud + cow dung (50:50, 37C)",0.5,0.0,0.0,0.0,0.5,0.0,37.0,25.0,2.5,0.60,7.1
+"Poultry Sci. 2018, Table 2","Poultry litter mono-digestion (35C)",0.0,0.0,0.0,0.0,0.0,1.0,35.0,30.0,2.0,0.56,7.3
+"Poultry Sci. 2018, Table 2","Poultry litter + dung (30:70, 35C)",0.7,0.0,0.0,0.0,0.0,0.3,35.0,30.0,2.0,0.48,7.2
+"Bioresource Tech. 2019, Fig 5","Food waste + rice straw + dung (2:1:7)",0.7,0.1,0.0,0.2,0.0,0.0,35.0,25.0,3.0,0.68,7.0
+"Bioresource Tech. 2019, Fig 5","Food waste + rice straw + dung (3:2:5)",0.5,0.2,0.0,0.3,0.0,0.0,35.0,25.0,3.0,0.74,6.9
+"Environ. Sci. Pollut. Res. 2022","Dung + press mud + straw (6:2:2, 37C)",0.6,0.2,0.0,0.0,0.2,0.0,37.0,25.0,2.5,0.57,7.1
+"Renew. Energy 2021, Table 5","Food waste only (mesophilic, high OLR)",0.0,0.0,0.0,1.0,0.0,0.0,37.0,20.0,4.0,1.00,6.7
+"Renew. Energy 2021, Table 5","Food waste + dung (40:60, moderate OLR)",0.6,0.0,0.0,0.4,0.0,0.0,37.0,20.0,3.0,0.72,7.0

@@ -1,0 +1,597 @@
+Hybrid Simulation of a Shell-and-Tube Heat Exchanger Using Aspen Plus and OpenFOAM
+Major Project Report
+Submitted in the partial fulfilment
+of the Requirement for the Award of degree
+of
+BACHELOR OF TECHNOLOGY
+in
+Chemical Engineering
+Submitted by:
+Vidit Saraswat (22112083)
+Under the guidance of
+Dr. Anurag Kumar Tiwari
+Assistant Professor
+
+
+DEPARTMENT OF CHEMICAL ENGINEERING
+DR. B. R. AMBEDKAR NATIONAL INSTITUTE OF TECHNOLOGY
+JALANDHAR, PUNJAB
+May - 2026
+
+
+
+
+
+CANDIDATE DECLARATION
+
+I hereby declare that the work which is being presented in the major project report "Hybrid Simulation of a Shell-and-Tube Heat Exchanger Using Aspen Plus and OpenFOAM" submitted towards the partial fulfilment of the requirements for the award of degree of bachelor of technology in Chemical Engineering Dr. B. Ambedkar National Institute of Technology Jalandhar is an authentic record of our work carried out from July 2025 to May 2026 under the supervision or Dr. A. K. Tiwari, Assistant Professor, Department of Chemical Engineering, NIT Jalandhar. The matter embodied in this project report has not been submitted by me for any other degree or diploma.
+
+Place: NIT Jalandhar								Date
+
+
+
+Vidit Saraswat								
+  (22112083)								
+
+
+
+CERTIFICATE
+This is to certify that the above statement made by the candidates is correct to the best of my knowledge
+
+
+Date
+
+
+Dr. A. K. Tiwari							          Dr. J. K. Ratan
+(Assistant Professor)							       (Head of Department)
+
+ACKNOWLEDGEMENT
+
+
+The satisfaction that accompanies the successful completion of any work would be incomplete unless we mention the names of the people who made it possible by piving constant guidance and encouragement.
+I express my sincere gratitude and heartfelt thanks to Dr. A. K. Tiwari, Assistant Professor, Department of Chemical Engineering, NIT Jalandhar for his constant support, guidance, and encouragement. I am indebted to him for having spared his valuable time in giving concrete suggestions and increasing our knowledge through fruitful discussions. His advice and timely guidance have helped this project reach consummation.
+I am grateful to our Head of Department, Dr. J. K. Ratan for his kind support and permission to use the facility available in the institute which was indispensable in the completion of this work.
+I am thankful to the entire faculty member and staff of the Department of Chemical Engineering for valuable advice and suggestions during this work.
+
+
+
+
+
+
+
+Vidit Saraswat							
+ (22112083) 								         
+
+
+
+
+
+
+
+TABLE OF CONTENT
+
+
+
+
+
+
+
+
+1. INTRODUCTION
+
+Shell-and-tube heat exchangers are among the most widely used thermal equipment in chemical and process industries due to their robustness, flexibility, and suitability for high-pressure and high-temperature operations. Accurate prediction of their thermal and hydraulic performance is essential for safe, economical, and energy-efficient plant operation. Traditionally, shell-and-tube heat exchangers are designed and analyzed using empirical correlations embedded in process simulators such as Aspen Plus. These correlations enable rapid system-level calculations but rely on idealized assumptions regarding flow distribution, turbulence, and heat transfer, which may not fully capture complex local flow phenomena.
+With advances in computational power, Computational Fluid Dynamics (CFD) has emerged as a powerful tool for analyzing detailed flow and heat transfer behavior inside heat exchangers. CFD tools such as OpenFOAM can resolve local velocity fields, temperature distributions, and turbulence effects that are not accessible through conventional process simulation. However, full CFD-based design is computationally expensive and impractical for flowsheet-level process optimization.
+To overcome the limitations of both approaches, a hybrid simulation framework combining process simulation and CFD has gained increasing attention. In this approach, Aspen Plus is used for rapid process-level calculations, while OpenFOAM provides detailed local flow and heat transfer information. CFD-derived parameters, such as local or effective heat transfer coefficients, are then used to correct or replace empirical correlations in the process simulator. This hybrid methodology bridges the gap between detailed equipment-scale analysis and overall process design accuracy.
+The objective of this project is to develop and demonstrate a hybrid simulation methodology for a shell-and-tube heat exchanger by integrating Aspen Plus and OpenFOAM. The study focuses on quantifying deviations between empirical correlation-based predictions and CFD-corrected results, and assessing the improvement in prediction accuracy for heat duty, outlet temperatures, and pressure drop.
+
+
+
+
+
+
+
+
+
+2. LITERATURE REVIEW
+
+2.1 Aspen Plus for Heat Exchanger Modeling
+Aspen Plus is one of the most widely used commercial process simulators in the chemical and process industries for steady-state modeling, design, and optimization. It provides dedicated unit operation models for shell-and-tube heat exchangers, enabling rapid estimation of heat duty, outlet temperatures, pressure drop, and overall heat transfer coefficient. These models are based on well-established empirical correlations derived from experimental studies and industrial experience.
+The strength of Aspen Plus lies in its ability to perform system-level mass and energy balances efficiently. It allows engineers to evaluate multiple design alternatives, perform sensitivity analysis, and optimize process conditions within a short computational time. As a result, Aspen Plus is extensively used during preliminary design and plant-wide optimization studies.
+However, several studies have highlighted limitations associated with Aspen Plus heat exchanger models. The use of empirical correlations assumes uniform flow distribution, fully developed turbulence, and idealized geometric configurations. Such assumptions may not accurately capture complex shell-side flow phenomena such as bypass streams, recirculation zones, and local maldistribution, which can significantly influence heat transfer and pressure drop. These limitations motivate the use of detailed CFD analysis to supplement process simulation results.
+2.2 OpenFOAM as a Viable CFD Tool
+Computational Fluid Dynamics has emerged as a powerful tool for resolving detailed flow and heat transfer phenomena that cannot be captured using empirical correlations. OpenFOAM, an open-source CFD platform, has been widely adopted in academic research due to its flexibility, transparency, and cost-effectiveness. Numerous studies have demonstrated that OpenFOAM can produce results comparable to commercial CFD software for both internal and external flow applications when properly configured.
+The open-source nature of OpenFOAM allows users to modify solvers, turbulence models, and boundary conditions according to specific problem requirements. This capability makes it particularly suitable for customized studies involving heat exchangers, where complex thermal and hydrodynamic interactions occur. Despite these advantages, researchers have noted that OpenFOAM requires a higher level of user expertise and careful numerical setup compared to commercial CFD packages.
+
+
+2.3 Mesh Generation Practices in CFD Studies
+Mesh generation is consistently identified as one of the most critical aspects influencing CFD accuracy. The literature reports widespread use of blockMesh for generating structured base meshes that define the computational domain. Structured meshes are preferred in regions where flow gradients are relatively uniform due to their numerical stability and low diffusion.
+For complex geometries, snappyHexMesh is commonly employed to capture curved surfaces and apply local mesh refinement. Many studies emphasize the importance of refining the mesh near solid boundaries to accurately resolve velocity and temperature gradients in the boundary layer region. Grid independence studies are frequently performed to ensure that numerical predictions are not affected by mesh resolution. These practices are particularly important in heat exchanger simulations, where local heat transfer coefficients are highly sensitive to near-wall flow behavior.
+2.4 Turbulence Modeling in Heat Exchanger CFD
+Turbulence modeling plays a crucial role in predicting heat transfer and pressure drop in CFD simulations. Reynolds-Averaged Navier–Stokes (RANS) models are widely used due to their balance between accuracy and computational efficiency. Commonly reported models include k–ε, k–ω, and k–ω SST.
+Among these, the k–ω SST model has gained significant attention due to its improved performance in near-wall regions and its ability to capture flow separation and adverse pressure gradients. Several studies report improved prediction of local heat transfer coefficients when using the k–ω SST model compared to standard k–ε formulations. Consequently, this model is frequently adopted in simulations involving internal turbulent flows and heat transfer.
+2.5 Solver Selection in OpenFOAM
+Solver selection is another important consideration discussed in the literature. For steady-state incompressible flow and heat transfer problems, simpleFoam is widely used due to its robustness and computational efficiency. The SIMPLE algorithm employed in simpleFoam provides stable pressure–velocity coupling for steady simulations.
+PotentialFoam is often used to initialize velocity and pressure fields before running RANS solvers, thereby accelerating convergence. For transient simulations involving unsteady flow phenomena, PimpleFoam is employed; however, transient simulations require significantly higher computational resources. As a result, steady-state solvers remain the preferred choice for many industrial heat exchanger studies.
+2.6 Validation and Benchmarking of CFD Models
+Validation of CFD results is consistently emphasized in the literature. Researchers commonly validate numerical predictions against experimental data, established empirical correlations, or results obtained from commercial CFD software. Validation parameters typically include velocity profiles, temperature distributions, pressure drop, and heat transfer coefficients. Such validation practices are essential to establish confidence in CFD-based predictions, especially when they are used to inform design decisions.
+2.7 Hybrid Simulation: Integration of Aspen Plus and OpenFOAM
+In recent years, hybrid simulation approaches that integrate process simulators with CFD tools have gained increasing attention. In such approaches, Aspen Plus is used to perform rapid process-level calculations, while CFD tools such as OpenFOAM provide detailed local flow and heat transfer information. CFD-derived parameters, such as effective heat transfer coefficients or pressure drop corrections, are then incorporated into the process simulator.
+Several studies have demonstrated that replacing or correcting empirical correlations in process simulators with CFD-derived values leads to improved prediction accuracy. Hybrid approaches are particularly beneficial under off-design operating conditions, where empirical correlations may not be fully applicable. These methods provide a practical compromise between computational efficiency and modeling accuracy.
+Despite their advantages, hybrid simulation approaches are still not widely adopted in routine industrial practice due to the lack of standardized workflows and the additional effort required for data exchange between CFD and process simulation tools. This highlights the need for structured and repeatable hybrid methodologies.
+2.8 Challenges and Limitations Reported in Literature
+The literature also reports several challenges associated with CFD and hybrid simulations. These include high computational cost for fine meshes, sensitivity of results to numerical parameters, and the need for user expertise in CFD setup and interpretation. In hybrid simulations, additional challenges arise in selecting representative CFD domains and ensuring consistency between CFD and process simulation assumptions.
+
+
+The reviewed literature establishes Aspen Plus as a powerful tool for process-level heat exchanger modeling and OpenFOAM as a reliable CFD platform for detailed flow and heat transfer analysis. While both approaches have individual strengths, each also has inherent limitations. Hybrid CFD–process simulation approaches offer a promising pathway to overcome these limitations by combining the advantages of both methods.
+However, limited literature presents a clear, step-by-step hybrid workflow specifically for shell-and-tube heat exchangers using Aspen Plus and OpenFOAM. This gap motivates the present work, which aims to develop and demonstrate a structured hybrid simulation methodology and evaluate its effectiveness in improving heat exchanger performance prediction.
+
+
+
+
+3. METHODOLOGY
+
+3.1 Problem Definition and System Description
+The first step involves defining the shell-and-tube heat exchanger configuration, operating conditions, and performance objectives. The heat duty, mass flow rates, inlet temperatures, operating pressures, and flow arrangement (co-current or counter-current) are specified based on realistic industrial conditions. These parameters form the basis for both Aspen Plus and CFD simulations.
+3.2 Aspen Plus Process Simulation (Baseline Model)
+A shell-and-tube heat exchanger unit is modeled in Aspen Plus using an appropriate thermodynamic property method. Fluid properties and stream conditions are defined, and built-in empirical heat transfer and pressure drop correlations are applied. The baseline Aspen Plus simulation provides reference values for heat duty, outlet temperatures, pressure drop, and overall heat transfer coefficient.
+3.3 CFD Geometry and Domain Simplification
+The computational domain represents a simplified physical model of a shell-and-tube heat exchanger. To balance computational cost and physical accuracy, a reduced geometry approach is adopted. The domain consists of a single tube with hot fluid flowing inside the tube and cold fluid flowing in the shell-side region surrounding the tube. This configuration captures the essential heat transfer mechanisms while avoiding the high computational cost associated with modeling an entire tube bundle.
+The domain is extended sufficiently in the axial and radial directions to ensure that inlet and outlet boundary effects do not influence the core flow and thermal fields. Such domain sizing is critical to obtaining grid-independent and physically realistic results.
+3.4 Mesh Generation Process
+The mesh generation process is carried out in multiple stages using OpenFOAM utilities to ensure numerical accuracy and stability.
+Stage 1: Base Computational Mesh (blockMesh)
+A structured hexahedral base mesh is generated using the blockMesh utility. The base mesh defines a rectangular control volume that encloses the tube and shell-side flow region. This initial mesh is intentionally coarse and serves as the foundation for subsequent refinements. The use of blockMesh ensures good cell orthogonality and low numerical diffusion.
+Stage 2: Geometry Integration and Local Refinement
+The tube geometry is introduced into the computational domain using snappyHexMesh. This utility generates an unstructured mesh around the curved tube surface, allowing accurate representation of the solid–fluid interface. Local mesh refinement is applied near the tube wall to accurately capture steep velocity and temperature gradients in the boundary layer region. Coarser mesh is maintained away from the wall to reduce computational cost.
+A refinement region is defined around the tube to improve resolution in zones of high thermal and hydrodynamic gradients. This targeted refinement strategy ensures accurate prediction of local heat transfer coefficients while maintaining reasonable simulation time.
+3.5 Boundary and Initial Conditions
+Boundary conditions are specified to replicate realistic operating conditions of a shell-and-tube heat exchanger.
+Inlet Boundary Conditions
+Velocity inlet boundary conditions are applied at both tube-side and shell-side inlets. Uniform inlet velocities are specified based on mass flow rates obtained from Aspen Plus simulations. Inlet temperatures are prescribed according to the process conditions. Turbulence quantities are defined using appropriate turbulence intensity and length scale values.
+Outlet Boundary Conditions
+Pressure outlet boundary conditions with zero-gradient velocity and temperature are applied at the outlets to allow fully developed flow to exit the domain without artificial reflections.
+Wall Boundary Conditions
+The tube wall is modeled as a no-slip wall with conjugate heat transfer conditions. A constant wall heat flux or fixed wall temperature condition is applied depending on the simulation case. Thermal wall functions are employed to resolve near-wall heat transfer accurately without requiring extremely fine mesh near the wall.
+3.6 Governing Equations
+The flow is assumed to be incompressible, turbulent, and Newtonian. The governing equations solved in OpenFOAM are the Reynolds-Averaged Navier–Stokes (RANS) equations coupled with the energy equation.
+Continuity Equation (Mass Conservation)
+
+
+
+This equation ensures conservation of mass for incompressible flow, where u is the velocity vector.
+
+Momentum Conservation (Navier–Stokes Equations)
+
+
+
+Here, p is pressure, ρ is density, and ν is kinematic viscosity. For steady-state simulations, the time derivative term is omitted.
+
+Energy Equation
+
+
+
+Where T is temperature and α is thermal diffusivity. This equation governs heat transport due to convection and conduction.
+3.7 Turbulence Modeling
+Turbulence effects are modeled using the k–ω SST turbulence model due to its superior performance in predicting near-wall behavior and flow separation. The model solves two additional transport equations:
+Turbulent kinetic energy (k):
+
+
+Specific dissipation rate (ω):
+
+Description: Here,  is turbulent kinetic energy, is the specific dissipation rate,  ​ is the production of turbulence,  is turbulent viscosity, and ,  are model constants. The blending function  combines k-omega near walls with k-epsilon in free-stream regions, improving accuracy for boundary layers and separated flows.
+The k–ω SST model blends the k–ω formulation near walls with the k–ε formulation in the free stream, ensuring numerical robustness and physical accuracy.
+3.8 Solver Selection and Numerical Schemes
+Steady-state simulations are performed using the simpleFoam solver for coupled momentum and pressure equations. The SIMPLE algorithm is used for pressure–velocity coupling. The potentialFoam solver is optionally employed to initialize the flow field and accelerate convergence.
+Second-order discretization schemes are applied for spatial derivatives to reduce numerical diffusion. Convergence is monitored through residual reduction and stabilization of integral quantities such as pressure drop and heat transfer rate.
+3.9 Post-Processing and Data Extraction
+Post-processing is performed using ParaView. Temperature contours, velocity vectors, and streamline plots are generated to visualize flow and thermal behavior. Local heat transfer coefficients are calculated using wall heat flux and temperature difference data. Area-averaged heat transfer coefficients are extracted for use in the hybrid integration with Aspen Plus.
+3.10 Integration with Process Simulation
+The CFD-derived heat transfer coefficients are imported into Aspen Plus to replace default empirical correlations. The process simulation is re-executed using these corrected parameters. The results from baseline and hybrid simulations are compared to quantify improvements in prediction accuracy.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+4. CONCLUSION
+
+Aspen Plus was found to be highly effective for rapid process-level calculations, enabling efficient estimation of heat duty, outlet temperatures, and pressure drop using established empirical correlations. However, the literature review and baseline simulations indicate that such correlations rely on idealized assumptions and may not fully capture complex flow phenomena, particularly on the shell side of heat exchangers. These limitations justify the need for detailed CFD analysis.
+The CFD simulations performed using OpenFOAM provided valuable insight into local flow and temperature distributions, turbulence behavior, and heat transfer characteristics. By resolving near-wall effects and flow maldistribution, CFD enabled the estimation of more realistic heat transfer coefficients compared to empirical methods. The use of appropriate mesh generation strategies, turbulence models, and steady-state solvers ensured numerical stability and reliable predictions.
+The hybrid integration of CFD-derived parameters into Aspen Plus resulted in prediction accuracy for key performance indicators such as heat duty and outlet temperatures. This approach represents a practical compromise between computational efficiency and modeling accuracy, making it suitable for engineering design and analysis applications.
+Overall, the study demonstrates that hybrid Aspen Plus–OpenFOAM simulation provides a robust framework for enhanced heat exchanger analysis. The methodology developed in this work can be extended to other heat exchanger configurations and operating conditions, and it offers a promising pathway for improving the reliability of thermal equipment design in the chemical and process industries.
+
+
+
+
+
+
+
+
+
+
+
+5. APPENDICES
+5.1 blockMeshdict file
+/*--------------------------------*- C++ -*----------------------------------*\
+  =========                 |
+  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+   \\    /   O peration     | Website:  https://openfoam.org
+    \\  /    A nd           | Version:  dev
+     \\/     M anipulation  |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    format      ascii;
+    class       dictionary;
+    object      blockMeshDict;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+convertToMeters 0.04;
+
+vertices
+(
+    (-1.7501 -1.0001 -0.3751)
+    (-1.7501  1.0001 -0.3751)
+    (-1.7501  1.0001  5.3751)
+    (-1.7501 -1.0001  5.3751)
+
+    ( 1.7501 -1.0001 -0.3751)
+    ( 1.7501  1.0001 -0.3751)
+    ( 1.7501  1.0001  5.3751)
+    ( 1.7501 -1.0001  5.3751)
+);
+
+blocks
+(
+    hex (0 1 2 3 4 5 6 7) (40 115 70) simpleGrading (1 1 1)
+);
+
+faces
+(
+);
+
+defaultPatch
+{
+    name default;
+    type patch;
+}
+
+boundary
+(
+);
+
+
+// ************************************************************************* //
+
+5.2 controldict file
+/*--------------------------------*- C++ -*----------------------------------*\
+  =========                 |
+  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+   \\    /   O peration     | Website:  https://openfoam.org
+    \\  /    A nd           | Version:  dev
+     \\/     M anipulation  |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    format      ascii;
+    class       dictionary;
+    location    "system";
+    object      controlDict;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+application     foamMultiRun;
+
+regionSolvers
+{
+    solid           solid;
+    shell           fluid;
+    tube            fluid;
+}
+
+startFrom       startTime;
+
+startTime       0;
+
+stopAt          endTime;
+
+endTime         1000;
+
+deltaT          1;
+
+writeControl    adjustableRunTime;
+
+writeInterval   100;
+
+purgeWrite      0;
+
+writeFormat     binary;
+
+writePrecision  6;
+
+writeCompression off;
+
+timeFormat      general;
+
+timePrecision   6;
+
+runTimeModifiable on;
+
+adjustTimeStep  off;
+
+// ************************************************************************* //
+
+
+5.3 createBafflesdict file
+/*--------------------------------*- C++ -*----------------------------------*\
+  =========                 |
+  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+   \\    /   O peration     | Website:  https://openfoam.org
+    \\  /    A nd           | Version:  dev
+     \\/     M anipulation  |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    format      ascii;
+    class       dictionary;
+    object      createBafflesDict;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+internalFacesOnly true;
+
+baffles
+{
+    baffles1
+    {
+        type        faceZone;
+        zoneName    shell_to_solid;
+
+        owner
+        {
+            name        shell_to_solid;
+            type        mappedWall;
+            neighbourRegion solid;
+            neighbourPatch solid_to_shell;
+        }
+
+        neighbour
+        {
+            name        solid_to_shell;
+            type        mappedWall;
+            neighbourRegion shell;
+            neighbourPatch shell_to_solid;
+        }
+    }
+
+    baffles2
+    {
+        type        faceZone;
+        zoneName    tube_to_solid;
+
+        owner
+        {
+            name        tube_to_solid;
+            type        mappedWall;
+            neighbourRegion solid;
+            neighbourPatch solid_to_tube;
+        }
+
+        neighbour
+        {
+            name        solid_to_tube;
+            type        mappedWall;
+            neighbourRegion tube;
+            neighbourPatch tube_to_solid;
+        }
+    }
+}
+
+
+// ************************************************************************* //
+
+
+
+
+
+
+
+
+
+
+
+
+5.4 snappyHexMeshdict file
+
+/*--------------------------------*- C++ -*----------------------------------*\
+  =========                 |
+  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+   \\    /   O peration     | Website:  https://openfoam.org
+    \\  /    A nd           | Version:  dev
+     \\/     M anipulation  |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    format      ascii;
+    class       dictionary;
+    object      snappyHexMeshDict;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+#includeEtc "caseDicts/mesh/generation/snappyHexMeshDict.cfg"
+
+castellatedMesh on;
+snap            on;
+addLayers       off;
+
+geometry
+{
+    shell
+    {
+        type            triSurfaceMesh;
+        file            "shell.stl";
+        regions
+        {
+            lower           { name lower; }
+            upper           { name upper; }
+            walls           { name walls; }
+        }
+    }
+    tube
+    {
+        type            triSurfaceMesh;
+        file            "tube.stl";
+        regions
+        {
+            lower           { name lower; }
+            upper           { name upper; }
+            walls           { name walls; }
+        }
+    }
+    solid
+    {
+        type            triSurfaceMesh;
+        file            "solid.stl";
+        regions
+        {
+            external        { name external; }
+        }
+    }
+    shell_to_solid
+    {
+        type            triSurfaceMesh;
+        file            "shell_to_solid.stl";
+    }
+    tube_to_solid
+    {
+        type            triSurfaceMesh;
+        file            "tube_to_solid.stl";
+    }
+};
+
+castellatedMeshControls
+{
+    features
+    (
+    );
+
+    refinementSurfaces
+    {
+        shell
+        {
+            level           (1 1);
+            regions
+            {
+                lower           { level (1 1); patchInfo { type patch; } }
+                upper           { level (1 1); patchInfo { type patch; } }
+                walls           { level (1 1); patchInfo { type wall; } }
+            }
+        }
+        tube
+        {
+            level           (1 1);
+            regions
+            {
+                lower           { level (1 1); patchInfo { type patch; } }
+                upper           { level (1 1); patchInfo { type patch; } }
+                walls           { level (1 1); patchInfo { type wall;  } }
+            }
+        }
+        solid
+        {
+            level           (1 1);
+            regions
+            {
+                external        { level (1 1); patchInfo { type wall; } }
+            }
+        }
+        shell_to_solid
+        {
+            level           (1 1);
+            faceZone        shell_to_solid;
+            cellZone        shell;
+            mode        inside;
+        }
+        tube_to_solid
+        {
+            level           (1 1);
+            faceZone        tube_to_solid;
+            cellZone        tube;
+            mode        inside;
+        }
+    }
+
+    insidePoint (0 0.008 0.015);
+
+    nCellsBetweenLevels 2;
+
+    resolveFeatureAngle 15;
+}
+
+snapControls
+{
+    implicitFeatureSnap    true;
+}
+
+addLayersControls
+{
+    layers
+    {
+        walls
+        {
+            nSurfaceLayers 2;
+            mergeFaces true;
+        }
+        shell_to_solid
+        {
+            nSurfaceLayers 2;
+            mergeFaces false;
+        }
+        tube_to_solid
+        {
+            nSurfaceLayers 2;
+            mergeFaces false;
+        }
+    }
+
+    relativeSizes       true;
+    expansionRatio      1.2;
+    finalLayerThickness 0.5;
+    minThickness        1e-3;
+}
+
+mergeTolerance 1e-6;
+
+// ************************************************************************* //
+
+
+
+
+
+
+
+
+
+
+6. REFERENCES
+
+
+
+He, Shaopeng & Wang, Mingjun & Tian, Wenxi & Qiu, Suizheng & Su, G.G.H. (2022).
+Development of an OpenFOAM solver for numerical simulations of shell-and-tube heat exchangers based on porous media model. Applied Thermal Engineering, 201, 117389.
+https://www.sciencedirect.com/science/article/pii/S1359431122003453
+
+
+
+Pal, Sarbajit & Pérez-Fernández, Luis & Chordá, Ramón & Vallés, Rubén & Gimeno, Carlos (2018).
+An OpenFOAM-based model for heat-exchanger design in the Cloud. Applied Thermal Engineering, 139, 239–255.
+https://www.sciencedirect.com/science/article/pii/S1359431117349840

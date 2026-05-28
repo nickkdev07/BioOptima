@@ -1,0 +1,23 @@
+# ADM1da substrate: Indian food waste — macerated slurry (calibrated)
+#
+# TS 140 kg/m³ (~14% TS after maceration). Calibrated against Indian AD
+# literature. NH4, FFS, KS43 per-m³-slurry.
+
+name: Indian food waste (slurry)
+TS:    140.0
+NH4:    0.67
+BGP:  650.0
+BMP:  380.0
+aXI:     0.22
+fOTSrf:  0.80
+fsOTS:   0.50
+ffOTS:   0.50
+aSi:     0.06
+fRF:   0.12
+fRP:   0.22
+fRFe:  0.12
+fRA:   0.06
+Temp:  18.0
+pH:    5.5
+KS43:  22.5
+FFS:   1.40

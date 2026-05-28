@@ -1,0 +1,24 @@
+# low OLR
+# ADM1da substrate: Indian poultry litter — diluted slurry (calibrated)
+#
+# TS 112 kg/m³ (~11% TS slurry, heavily diluted to manage ammonia). Calibrated
+# against Indian AD literature. NH4, FFS, KS43 per-m³-slurry.
+
+name: Indian poultry litter (slurry)
+TS:    61.6
+NH4:    0.594
+BGP:  420.0
+BMP:  280.0
+aXI:     0.35
+fOTSrf:  0.70
+fsOTS:   0.70
+ffOTS:   0.30
+aSi:     0.05
+fRF:   0.18
+fRP:   0.28
+fRFe:  0.08
+fRA:   0.10
+Temp:  22.0
+pH:    7.2
+KS43:  11.94
+FFS:   0.198

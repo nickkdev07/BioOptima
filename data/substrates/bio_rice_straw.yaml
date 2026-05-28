@@ -1,0 +1,23 @@
+# ADM1da substrate: Indian rice straw — chopped and soaked slurry (calibrated)
+#
+# TS 195 kg/m³ (~20% TS slurry after chopping and soaking). Calibrated against
+# Indian AD literature. NH4, FFS, KS43 are per-m³-slurry quantities.
+
+name: Indian rice straw (slurry)
+TS:    195.0
+NH4:    0.07
+BGP:  420.0
+BMP:  230.0
+aXI:     0.32
+fOTSrf:  0.65
+fsOTS:   0.95
+ffOTS:   0.05
+aSi:     0.02
+fRF:   0.42
+fRP:   0.06
+fRFe:  0.02
+fRA:   0.08
+Temp:  20.0
+pH:    6.2
+KS43:  5.5
+FFS:   0.11

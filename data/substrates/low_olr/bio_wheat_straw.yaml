@@ -1,0 +1,24 @@
+# low OLR
+# ADM1da substrate: Indian wheat straw — chopped and soaked slurry (calibrated)
+#
+# TS 195 kg/m³ (~20% TS slurry). Same dilution as rice straw. Calibrated
+# against Indian AD literature. NH4, FFS, KS43 per-m³-slurry.
+
+name: Indian wheat straw (slurry)
+TS:    107.3
+NH4:    0.044
+BGP:  440.0
+BMP:  240.0
+aXI:     0.30
+fOTSrf:  0.65
+fsOTS:   0.95
+ffOTS:   0.05
+aSi:     0.02
+fRF:   0.40
+fRP:   0.06
+fRFe:  0.02
+fRA:   0.09
+Temp:  20.0
+pH:    6.3
+KS43:  3.41
+FFS:   0.055

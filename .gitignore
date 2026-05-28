@@ -1,0 +1,18 @@
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+.ipynb_checkpoints/
+
+# Local/editor artifacts
+.DS_Store
+Thumbs.db
+.vscode/
+
+# Build/cache outputs
+outputs/
+
+# Streamlit/local secrets
+.streamlit/secrets.toml

@@ -1,0 +1,86 @@
+{
+  "substrate_ids": [
+    "bio_cow_dung",
+    "bio_rice_straw",
+    "bio_wheat_straw",
+    "bio_food_waste",
+    "bio_press_mud",
+    "bio_poultry_litter"
+  ],
+  "meta": {
+    "bio_cow_dung": {
+      "cn": 18.0,
+      "bmp": 200.0,
+      "ts_pct_fm": 20.0,
+      "vs_of_ts": 0.775
+    },
+    "bio_rice_straw": {
+      "cn": 50.0,
+      "bmp": 230.0,
+      "ts_pct_fm": 90.0,
+      "vs_of_ts": 0.825
+    },
+    "bio_wheat_straw": {
+      "cn": 90.0,
+      "bmp": 240.0,
+      "ts_pct_fm": 89.0,
+      "vs_of_ts": 0.84
+    },
+    "bio_food_waste": {
+      "cn": 17.0,
+      "bmp": 380.0,
+      "ts_pct_fm": 25.0,
+      "vs_of_ts": 0.9
+    },
+    "bio_press_mud": {
+      "cn": 20.0,
+      "bmp": 260.0,
+      "ts_pct_fm": 72.0,
+      "vs_of_ts": 0.75
+    },
+    "bio_poultry_litter": {
+      "cn": 7.5,
+      "bmp": 280.0,
+      "ts_pct_fm": 62.0,
+      "vs_of_ts": 0.685
+    }
+  },
+  "biochem_vs_fractions": {
+    "bio_cow_dung": [
+      0.35,
+      0.2,
+      0.1,
+      0.35
+    ],
+    "bio_rice_straw": [
+      0.65,
+      0.05,
+      0.02,
+      0.28
+    ],
+    "bio_wheat_straw": [
+      0.6,
+      0.05,
+      0.02,
+      0.33
+    ],
+    "bio_food_waste": [
+      0.5,
+      0.25,
+      0.15,
+      0.1
+    ],
+    "bio_press_mud": [
+      0.4,
+      0.12,
+      0.08,
+      0.4
+    ],
+    "bio_poultry_litter": [
+      0.25,
+      0.35,
+      0.1,
+      0.3
+    ]
+  }
+}
